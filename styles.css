@@ -1,0 +1,220 @@
+@font-face
+{
+	font-family: "OCR-A";
+	src: url("OCRA.ttf");
+}
+
+:root {
+	--cpu-color: #FF0000;
+	--mem-color: #00A000;
+	--page-color: #A0B000;
+	--net-tx-color: #0040FF;
+	--net-rx-color: #00FFFF;
+	--disk-read-color: #EEEE00;
+	--disk-write-color: #FF8800;
+	--de-emphasize: #777;
+	--error-color: #FF0000;
+}
+
+body {
+	background: black;
+	color: white;
+	margin: 0;
+	font-family: "OCR-A", monospace;
+	font-size: calc(0em + (1.67vh));
+	min-width: 640px;
+	min-height: 480px;
+	height: 100vh;
+	margin: auto;
+	aspect-ratio: 640/480;
+	display: grid;
+	grid-template-rows: max-content;
+	grid-template-columns: 50% 50%;
+	overflow: hidden;
+}
+
+.inactive {
+	cursor: none;
+}
+
+.chart-title {
+	position: absolute;
+	left: 0;
+	right: 0;
+	text-align: center;
+	margin-left: 30px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	color: var(--de-emphasize);
+}
+
+.ct-grid {
+	stroke: var(--de-emphasize);
+}
+
+.ct-label {
+	color: #FFFFFF;
+	font-size: 1em;
+}
+
+.ct-series .ct-line {
+	stroke-width: 0.1em;
+}
+
+.ct-series .ct-area {
+	fill-opacity: 0.3;
+}
+
+.ct-legend {
+	position: absolute;
+	padding: 0;
+	text-align: center;
+	margin-top: 2em;
+	left: 30px;
+	right: 0;
+}
+
+.ct-legend li {
+	display: inline-block;
+	margin-left: 1em;
+}
+
+.ct-legend li:before {
+	display: inline-block;
+	width: 0.8em;
+	height: 0.8em;
+	content: '';
+	border-radius: 0.2em;
+	margin-right: 0.2em;
+}
+
+.chart-container {
+	aspect-ratio: 2;
+	padding-bottom: 0.5em;
+	box-sizing: border-box;
+}
+
+.chart {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+#sys table {
+	margin: auto;
+	line-height: 1.7em;
+	font-size: 1.5em;
+	padding-left: 1.6em;
+}
+
+#sys th {
+	text-align: right;
+	color: var(--de-emphasize);
+}
+
+.local td:empty::before, .public td:empty::before {
+	content: "0.0.0.0";
+	color: var(--error-color);
+}
+
+/* Show changes in IP address. Note that this only takes effect when the content changes from empty to not empty. */
+.local td:not(:empty), .public td:not(:empty) {
+	animation: 10s linear 600s 1 normal backwards fade_green;
+}
+@keyframes fade_green { from { color: #00FF00; } to { color: #FFFFFF; }  }
+
+#cpu .ct-series .ct-area {
+	fill: var(--cpu-color);
+}
+
+#cpu .ct-series .ct-line {
+	stroke: var(--cpu-color);
+}
+
+#mem .ct-series-a .ct-area {
+	fill: var(--page-color);
+}
+
+#mem .ct-series-a .ct-line {
+	stroke: var(--page-color);
+}
+
+#mem .ct-legend .ct-series-0::before {
+	background: var(--page-color);
+}
+
+#mem .ct-series-b .ct-area {
+	fill: var(--mem-color);
+}
+
+#mem .ct-series-b .ct-line {
+	stroke: var(--mem-color);
+}
+
+#mem .ct-legend .ct-series-1::before {
+	background: var(--mem-color);
+}
+
+#net .ct-series-a .ct-area {
+	fill: var(--net-rx-color);
+}
+
+#net .ct-series-a .ct-line {
+	stroke: var(--net-rx-color);
+}
+
+#net .ct-legend .ct-series-0::before {
+	background: var(--net-rx-color);
+}
+
+#net .ct-series-b .ct-area {
+	fill: var(--net-tx-color);
+	fill-opacity: 0.4;
+}
+
+#net .ct-series-b .ct-line {
+	stroke: var(--net-tx-color);
+}
+
+#net .ct-legend .ct-series-1::before {
+	background: var(--net-tx-color);
+}
+
+.disk-container {
+	display: grid;
+	grid-template-columns: 94% 6%;
+}
+
+.side-chart {
+	height: 100%;
+}
+
+.disk-container .side-chart .ct-bar {
+	stroke-width: 1.25em;
+	stroke: var(--disk-write-color);
+}
+
+.disk-container .ct-series-a .ct-area {
+	fill: var(--disk-read-color);
+}
+
+.disk-container .ct-series-a .ct-line {
+	stroke: var(--disk-read-color);
+}
+
+.disk-container .ct-legend .ct-series-0::before {
+	background: var(--disk-read-color);
+}
+
+.disk-container .ct-series-b .ct-area {
+	fill: var(--disk-write-color);
+}
+
+.disk-container .ct-series-b .ct-line {
+	stroke: var(--disk-write-color);
+}
+
+.disk-container .ct-legend .ct-series-1::before {
+	background: var(--disk-write-color);
+}

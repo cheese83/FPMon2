@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="favicon.svg">
+		<link rel="stylesheet" href="chartist.css">
+		<link rel="stylesheet" href="styles.css">
+		<title>FPMon</title>
+	</head>
+	<body>
+		<div id="sys" class="chart-container">
+			<table>
+				<tr class="name"><th>Name:</th><td></td></tr>
+				<tr class="local"><th>Local:</th><td></td></tr>
+				<tr class="public"><th>Public:</th><td></td></tr>
+				<tr class="date"><th>Date:</th><td></td></tr>
+				<tr class="time"><th>Time:</th><td></td></tr>
+				<tr class="uptime"><th>Uptime:</th><td></td></tr>
+			</table>
+		</div>
+		<div id="cpu" class="chart-container">
+			<div class="chart"><div class="chart-title"></div></div>
+		</div>
+		<div id="mem" class="chart-container">
+			<div class="chart"><div class="chart-title"></div></div>
+		</div>
+		<div id="net" class="chart-container">
+			<div class="chart"><div class="chart-title"></div></div>
+		</div>
+		<div id="disk-0" class="chart-container disk-container">
+			<div class="chart"><div class="chart-title"></div></div>
+			<div class="side-chart"></div>
+		</div>
+		<div id="disk-1" class="chart-container disk-container">
+			<div class="chart"><div class="chart-title"></div></div>
+			<div class="side-chart"></div>
+		</div>
+		<script src="chartist.js"></script>
+		<script src="chartist-plugin-legend.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>
